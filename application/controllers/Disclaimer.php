@@ -55,7 +55,7 @@ class Disclaimer extends CI_Controller {
 	
 	public function upload(){
 		
-		$config['upload_path'] = './dist/img/uploads/';
+		$config['upload_path'] = '/var/www/deistechocr/dist/img/uploads/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg|JPG';
 
         $this->load->library('upload', $config);
