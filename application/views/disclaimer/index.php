@@ -122,7 +122,8 @@
 			  margin-right: 10px;
 			  }
 			  .table-container {
-				  max-height: 300px; /* Set the maximum height of the container */
+				  max-height: 500px; /* Set the maximum height of the container */
+				  overflow-x: hidden; /* Enable vertical scrolling */
 				  overflow-y: auto; /* Enable vertical scrolling */
 				}
 				
@@ -358,28 +359,33 @@
 						<td bgcolor="#ffffff" height="25" style="font-size: 1px; line-height: 25px; mso-line-height-rule: exactly;">&nbsp;</td>
 					</tr>
 				</table>
-				<div class="table-container" id="div-table-container" style="display:none;">
+				
+				<div id="div-table-container" style="display:none;">
 				<table class="w100" width="1000" style="width: 1000px;" align="center" cellpadding="0" cellspacing="0" border="0" role="presentation">
 					<tr>
 						<td align="center">
-							
-							<table class="table-container" width="1000px" style="width: 1000px;border:3px solid #dddddd;" align="left" cellpadding="0" cellspacing="0" border="3" role="presentation">
+							<table  width="1000px" style="width: 1000px;border:3px solid #dddddd;" align="left" cellpadding="0" cellspacing="0" border="3" role="presentation">
 								<tr>
-									<td style="width: 500px;" valign="top"  height="900px">
-										<table class="table-container" width="490px"  height="900px">
-											<tr valign="top" height="900px">
-												<td id="image_data"  valign="top" style="width: 490px;"  height="900px">	
+									<td style="width: 470px;" valign="top">
+										<div class="table-container">
+										<table class="table-container" width="470px">
+											<tr valign="top">
+												<td id="image_data"  valign="top" style="width: 470px;" height="500">	
 												</td>
 											</tr>
 										</table>
+										</div>
 									</td>
-									<td style="width: 500px;" valign="top" >
-										<table  class="table-container" width="490px">
-											<tr valign="top" >
-												<td id="extracted_data"  valign="top" style="width: 490px;">	
+									<td width="60">&nbsp;</td>
+									<td style="width: 470px;padding-left:15px;" valign="top">
+										<div class="table-container">
+										<table  class="table-container" width="470px">
+											<tr valign="top">
+												<td id="extracted_data"  valign="top" style="width: 470px;height:500px">	
 												</td>
 											</tr>
 										</table>
+										</div>
 									</td>
 								</tr>
 
