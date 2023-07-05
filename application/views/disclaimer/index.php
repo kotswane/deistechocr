@@ -358,7 +358,7 @@
 						<td bgcolor="#ffffff" height="25" style="font-size: 1px; line-height: 25px; mso-line-height-rule: exactly;">&nbsp;</td>
 					</tr>
 				</table>
-				<div class="table-container" id="div-table-container" >
+				<div class="table-container" id="div-table-container" style="display:none;">
 				<table class="w100" width="1000" style="width: 1000px;" align="center" cellpadding="0" cellspacing="0" border="0" role="presentation">
 					<tr>
 						<td align="center">
