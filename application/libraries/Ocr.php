@@ -14,6 +14,7 @@ class ocr
 	    return file_get_contents('C:\\w3\\www\\deistechocr\\dist\\img\\uploads\\text.txt');*/
 		
 		require __DIR__ . '/vendor/autoload.php';
+		
 		$fileData = fopen('/var/www/deistechocr/dist/img/uploads'.$target_file, 'r');
 		$client = new \GuzzleHttp\Client();
 		try {
