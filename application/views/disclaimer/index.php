@@ -507,6 +507,7 @@ $(document).ready(function (e) {
 		
 		if(data=='success')
 		{
+			alert("<?php echo $_SESSION['image_upload'];?>");
 			 $("#upload").css("background-color","green");
 			 $("#image_data").html("<?php echo $_SESSION['image_upload'];?>");
 		}
