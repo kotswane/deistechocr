@@ -15,7 +15,7 @@ class ocr
 		
 		require __DIR__ . '/vendor/autoload.php';
 		
-		$fileData = fopen('/var/www/deistechocr/dist/img/uploads'.$target_file, 'r');
+		$fileData = fopen('/var/www/deistechocr/dist/img/uploads/'.$target_file, 'r');
 		$client = new \GuzzleHttp\Client();
 		try {
 			$r = $client->request('POST', 'https://api.ocr.space/parse/image',[
