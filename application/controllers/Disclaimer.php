@@ -55,7 +55,8 @@ class Disclaimer extends CI_Controller {
 	
 	public function upload(){
 		
-		$config['upload_path'] = '/var/www/deistechocr/dist/img/uploads/';
+		/*
+		$config['upload_path'] = './dist/img/uploads/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg|JPG';
 
         $this->load->library('upload', $config);
@@ -64,18 +65,62 @@ class Disclaimer extends CI_Controller {
             print_r($this->upload->display_errors());
         } else {
 			$_SESSION["filename"] = $_FILES["uploadImage"]["name"];
-			$_SESSION["image_upload"] = "<img src='".base_url()."dist/img/uploads/".$_SESSION["filename"]."'/>";
+			$_SESSION["image_upload"] = "<img src='".base_url()."dist/img/uploads/".$_SESSION["filename"]."' width='500px'/>";
 			print "success";
-        }
+			//print $_SESSION["image_upload"];
+        }*/
+		
+		$uploadOk = 1;
+		$target_dir = './dist/img/uploads/';
+		$FileType = strtolower(pathinfo($_FILES["uploadImage"]["name"],PATHINFO_EXTENSION));
+		$filename = $this->generateRandomString().'.'.$FileType;
+		$_SESSION["filename"] = "";
+		$target_file = $target_dir . $filename;
+		// Check file size
+		if ($_FILES["uploadImage"]["size"] > 5000000) {
+			echo "Sorry, your file is too large.";
+			$uploadOk = 0;
+		}
+		if($FileType != "pdf" && $FileType != "png" && $FileType != "jpg") {
+			echo "Sorry, please upload a pdf|png|jpg file";
+			$uploadOk = 0;
+		}
+		if ($uploadOk == 1) {
+	   
+			if (move_uploaded_file($_FILES["uploadImage"]["tmp_name"], $target_file)) {
+				//uploadToApi($target_file);
+				$_SESSION["filename"] = $filename;
+				$_SESSION["image_upload"] = "<img src='".base_url()."dist/img/uploads/".$_SESSION["filename"]."' width='485px'/>";
+				print "success";
+			} else {
+				echo "Sorry, there was an error uploading your file.";
+			}
+		} 
 	}
 	
 	public function process(){
 		
 		try{
-		 print str_replace("\n","<br>",$this->ocr->convert($_SESSION["filename"]));
+		 //print str_replace("\n","<br>",$this->ocr->uploadToApi($_SESSION["filename"]));
+		  $response = $this->ocr->uploadToApi($_SESSION["filename"]);
+		  if ($response["success"] != ""){
+			  print_r($response["success"]);
+		  }else if($response["error"] != ""){
+			  print_r($response["error"]);
+		  }
 		}catch(Exception $e){
 			print "error";
 		}
 	}
+	
+	function generateRandomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
+}
 
 }

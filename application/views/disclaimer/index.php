@@ -363,17 +363,26 @@
 					<tr>
 						<td align="center">
 							
-							<table class="table-container" width="500px" style="width: 500px;border:1px solid #dddddd;" align="left" cellpadding="0" cellspacing="0" border="0" role="presentation">
+							<table class="table-container" width="1000px" style="width: 1000px;border:3px solid #dddddd;" align="left" cellpadding="0" cellspacing="0" border="3" role="presentation">
 								<tr>
-									<td height="500px" id="extracted_data" width="500px"></td>
+									<td style="width: 500px;" valign="top" >
+										<table  class="table-container" width="500px">
+											<tr valign="top" >
+												<td id="extracted_data"  valign="top" style="width: 500px;">	
+												</td>
+											</tr>
+										</table>
+									</td>
+									<td style="width: 500px;" valign="top" >
+										<table  class="table-container" width="490px">
+											<tr valign="top" >
+												<td id="image_data"  valign="top" style="width: 490px;">	
+												</td>
+											</tr>
+										</table>
+									</td>
 								</tr>
-							</table>
-							
-							<!--[if gte mso 12]></td><td><![endif]-->
-							<table class="w100" width="500px" style="width: 500px;border:1px solid #dddddd;" align="left" cellpadding="0" cellspacing="0" border="0" role="presentation">
-								<tr>
-									<td id="image_data" style="width: 500px; height: 500px; overflow:scroll; !important;"></td>
-								</tr>
+
 							</table>
 						</td>
 					</tr>
@@ -384,13 +393,14 @@
 	</table>
 </body>
 </div>
-	</section>		        
-        <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
-    <footer class="main-footer">
-        <strong>Copyright &copy; 2023 Deis Tech Technologies.</strong>
-    </footer>
+</section>		        
+	<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<footer class="main-footer">
+	<strong>Copyright &copy; 2023 Deis Tech Technologies.</strong>
+</footer>
+
 </div>
 	<div class="modal fade" id="loadMe" tabindex="-1" role="dialog" aria-labelledby="loadMeLabel">
 	  <div class="modal-dialog modal-sm" role="document">
@@ -532,7 +542,7 @@ $(document).ready(function (e) {
 			 $("#upload").css("background-color","green");
 			 //$("#extract").css("background-color","green");
 			 $("#output").css("background-color","green");
-			 $("#extracted_data").html(data);
+			 $("#extracted_data").html("<br><br><br>"+data);
 			 $("#div-table-container").show();
 		}
 		else
