@@ -98,12 +98,14 @@ class Disclaimer extends CI_Controller {
 				//uploadToApi($target_file);
 				$_SESSION["filename"] = $filename;
 				$_SESSION["image_upload"] = "<img src='".base_url()."dist/img/uploads/".$_SESSION["filename"]."' height='500px' width='485px'/>";
+				$testData = "<img src='".base_url()."dist/img/uploads/".$_SESSION["filename"]."' height='500px' width='485px'/>";
 
 				if($FileType == "pdf"){
 					$_SESSION["image_upload"] = "<embed src='".base_url()."dist/img/uploads/".$_SESSION["filename"]."'  type='application/pdf' height='500px' width='485px'/>";
+					$testData = $_SESSION["image_upload"] = "<embed src='".base_url()."dist/img/uploads/".$_SESSION["filename"]."'  type='application/pdf' height='500px' width='485px'/>";
 				}
 
-				print "success";
+				print $testData;
 			} else {
 				echo "Sorry, there was an error uploading your file.";
 			}

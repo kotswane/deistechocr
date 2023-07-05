@@ -505,11 +505,10 @@ $(document).ready(function (e) {
    success: function(data)
     {
 		
-		if(data=='success')
+		if(!data.includes("Sorry"))
 		{
-			alert("<?php echo $_SESSION['image_upload'];?>");
 			 $("#upload").css("background-color","green");
-			 $("#image_data").html("<?php echo $_SESSION['image_upload'];?>");
+			 $("#image_data").html(data);
 		}
 		else
 		{
