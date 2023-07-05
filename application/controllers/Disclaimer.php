@@ -102,6 +102,7 @@ class Disclaimer extends CI_Controller {
 				if($FileType == "pdf"){
 					$_SESSION["image_upload"] = "<embed src='".base_url()."dist/img/uploads/".$_SESSION["filename"]."'  type='application/pdf' height='500px' width='485px'/>";
 				}
+
 				print "success";
 			} else {
 				echo "Sorry, there was an error uploading your file.";

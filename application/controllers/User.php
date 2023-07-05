@@ -453,6 +453,8 @@ class User extends CI_Controller {
 		$response = $this->redisclient->remove($datax);
 		$data['logoutSession'] = "";
 		$data['errorSession'] = "Successfully logged out";
+		unset($_SESSION["filename"]);
+		unset($_SESSION["image_upload"]);
 		$this->session->sess_destroy();
 		$this->load->view('login',$data);
 	}
