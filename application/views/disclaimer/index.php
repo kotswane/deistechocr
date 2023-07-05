@@ -542,7 +542,7 @@ $(document).ready(function (e) {
 			 $("#upload").css("background-color","green");
 			 //$("#extract").css("background-color","green");
 			 $("#output").css("background-color","green");
-			 $("#extracted_data").html("<br><br><br>"+data);
+			 $("#extracted_data").html("<br><br>"+data);
 			 $("#div-table-container").show();
 		}
 		else
