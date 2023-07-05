@@ -75,8 +75,12 @@ class Disclaimer extends CI_Controller {
 		$FileType = strtolower(pathinfo($_FILES["uploadImage"]["name"],PATHINFO_EXTENSION));
 		
 		$filename = $this->generateRandomString().'.'.$FileType;
+		unset($_SESSION["filename"]);
+		unset($_SESSION["image_upload"]);
+		
 		$_SESSION["filename"] = "";
 		$_SESSION["image_upload"] = "";
+		
 		$target_file = $target_dir . $filename;
 		// Check file size
 		if ($_FILES["uploadImage"]["size"] > 5000000) {
@@ -87,6 +91,7 @@ class Disclaimer extends CI_Controller {
 			echo "Sorry, please upload a pdf|png|jpg file";
 			$uploadOk = 0;
 		}
+		
 		if ($uploadOk == 1) {
 	   
 			if (move_uploaded_file($_FILES["uploadImage"]["tmp_name"], $target_file)) {
