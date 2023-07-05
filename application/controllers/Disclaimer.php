@@ -73,8 +73,10 @@ class Disclaimer extends CI_Controller {
 		$uploadOk = 1;
 		$target_dir = './dist/img/uploads/';
 		$FileType = strtolower(pathinfo($_FILES["uploadImage"]["name"],PATHINFO_EXTENSION));
+		
 		$filename = $this->generateRandomString().'.'.$FileType;
 		$_SESSION["filename"] = "";
+		$_SESSION["image_upload"] = "";
 		$target_file = $target_dir . $filename;
 		// Check file size
 		if ($_FILES["uploadImage"]["size"] > 5000000) {
@@ -91,6 +93,10 @@ class Disclaimer extends CI_Controller {
 				//uploadToApi($target_file);
 				$_SESSION["filename"] = $filename;
 				$_SESSION["image_upload"] = "<img src='".base_url()."dist/img/uploads/".$_SESSION["filename"]."' width='485px'/>";
+
+				if($FileType == "pdf"){
+					$_SESSION["image_upload"] = "<embed src='".base_url()."dist/img/uploads/".$_SESSION["filename"]."'  type='application/pdf' width='485px'/>";
+				}
 				print "success";
 			} else {
 				echo "Sorry, there was an error uploading your file.";

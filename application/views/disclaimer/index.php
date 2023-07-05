@@ -358,17 +358,17 @@
 						<td bgcolor="#ffffff" height="25" style="font-size: 1px; line-height: 25px; mso-line-height-rule: exactly;">&nbsp;</td>
 					</tr>
 				</table>
-				<div class="table-container" id="div-table-container" style="display:none;">
+				<div class="table-container" id="div-table-container" >
 				<table class="w100" width="1000" style="width: 1000px;" align="center" cellpadding="0" cellspacing="0" border="0" role="presentation">
 					<tr>
 						<td align="center">
 							
 							<table class="table-container" width="1000px" style="width: 1000px;border:3px solid #dddddd;" align="left" cellpadding="0" cellspacing="0" border="3" role="presentation">
 								<tr>
-									<td style="width: 500px;" valign="top" >
-										<table  class="table-container" width="500px">
-											<tr valign="top" >
-												<td id="extracted_data"  valign="top" style="width: 500px;">	
+									<td style="width: 500px;" valign="top"  height="900px">
+										<table class="table-container" width="490px"  height="900px">
+											<tr valign="top" height="900px">
+												<td id="image_data"  valign="top" style="width: 490px;"  height="900px">	
 												</td>
 											</tr>
 										</table>
@@ -376,7 +376,7 @@
 									<td style="width: 500px;" valign="top" >
 										<table  class="table-container" width="490px">
 											<tr valign="top" >
-												<td id="image_data"  valign="top" style="width: 490px;">	
+												<td id="extracted_data"  valign="top" style="width: 490px;">	
 												</td>
 											</tr>
 										</table>
