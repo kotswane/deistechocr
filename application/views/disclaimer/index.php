@@ -182,6 +182,30 @@
 			.td1 {display:block !important;	width:320px !important;	max-width: 320px !important;}
 		}
 
+		.upload-area:hover{
+			cursor: pointer;
+			
+		}
+		
+		.upload-area{
+			width: 100%;
+			height: 50px;
+			border: 2px solid lightgray;
+			border-radius: 3px;
+			margin: 0 auto;
+			margin-top: 2px;
+			text-align: center;
+			overflow: auto;
+		}
+		
+		.upload-area h1{
+			text-align: center;
+			font-weight: normal;
+			font-family: sans-serif;
+			line-height: 50px;
+			color: darkslategray;
+		}
+		
 	</style>
 	
 	<body style="margin:0;padding:0;min-width:100%;background-color:#ffffff;">
@@ -250,17 +274,22 @@
 				<table class="w100" width="950" style="width: 950px;" align="center" cellpadding="0" cellspacing="0" border="0" role="presentation">
 					<tr>
 						<td align="center">
-							<table class="w100" width="250" style="width: 280px;" align="left" cellpadding="0" cellspacing="0" border="0" role="presentation">
-								<form id="form" method="post" enctype="multipart/form-data">
+							<table class="w100" width="250" style="width: 280px;" align="left" cellpadding="0" cellspacing="0" role="presentation">
+								<form id="form" method="post" name="form" enctype="multipart/form-data">
 									<tr id="drop-area">
-										<td align="center" ><input id="uploadImage" name="uploadImage" type="file" /></td>
+										<!--<td align="center" ><input id="uploadImage" name="uploadImage" type="file" /></td>-->
+										<td align="center" id="filename"><b>Upload: <div id="file_to_unpload"></b></div></td>
 									</tr>
 									<tr>
 										<td bgcolor="#ffffff" height="15" style="font-size: 1px; line-height: 15px; mso-line-height-rule: exactly;">&nbsp;</td>
 									</tr>
-									<!--<tr>
-										<td align="center"><font style="font:14px Calibri,Arial; mso-ansi-font-size:10.5pt; color:#000000; line-height: 13px; letter-spacing:100% !important;"><b>Drag and drop file here or click to upload.</b></font></td>
-									</tr> -->
+									<tr>
+										<td align="center" height="50" bgcolor="lightgray">
+											<div class="upload-area">
+												<font style="font:14px Calibri,Arial; mso-ansi-font-size:10.5pt; color:#000000; line-height: 13px;!important;" id="uploadImageText"><b>Drag and drop file here or click to upload.</b></font>
+											</div>
+										</td>
+									</tr>
 									<tr>
 										<td align="center"><font style="font:10px Calibri,Arial; mso-ansi-font-size:7.5pt; color:#000000; line-height: 13px; letter-spacing:100% !important;">We support png, jpeg, pdf formats. (Max 30MB)</font></td>
 									</tr>
@@ -492,13 +521,16 @@
 </style>
 <script>
 $(document).ready(function (e) {
-	
+
+var myfile;
  $("#form").on('submit',(function(e) {
+  var fd = new FormData(this)
+  fd.append("uploadImage",myfile[0]),
   e.preventDefault();
   $.ajax({
    url: "<?php echo site_url()?>/disclaimer/upload",
    type: "POST",
-   data:  new FormData(this),
+   data:  fd,
    contentType: false,
    cache: false,
    processData:false,
@@ -569,6 +601,67 @@ $(document).ready(function (e) {
 	 
  }))
  
+  $(".upload-area").on("dragover", function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $("#uploadImageText").html("<b>Drag here</b>");
+ });
+ 
+   
+ $('.upload-area').on('dragenter', function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+        $("#uploadImageText").html("<b>Drop</b>");
+    });
+	
+$('.upload-area').on('dragover', function (e) {
+	e.stopPropagation();
+	e.preventDefault();
+	$("#uploadImageText").html("<b>Drop</b>");
+});
+
+    // Drop
+$('.upload-area').on('drop', function (e) {
+	e.stopPropagation();
+	e.preventDefault();
+
+	$("#uploadImageText").html("<b>Click a button below to upload</b>");
+	const form = document.getElementById('form');
+	var file = e.originalEvent.dataTransfer.files;
+	$("#filename").html('<b>Upload: <div id="file_to_unpload">'+file[0].name+'</b></div>');
+	myfile = file;
+	//var fd = new FormData(form);
+	//<td align="center" id="filename"><b>File to upload: <div id="file_to_unpload"></b></div></td>
+	//alert(file[0]);
+	//fd.append('uploadImage',file, file[0].name);
+	//console.log(fd);
+});
+
+// file selected
+$("#uploadImageText").change(function(){
+	var fd = new FormData();
+	var files = $('#uploadImage')[0].files[0];
+	fd.append('uploadImage',files);
+})
+
+$(".upload-area").on('click',function(e){
+	
+	/*const form = document.getElementById('form');
+	var file = e.originalEvent.dataTransfer.files;
+	$("#filename").html('<b>Upload: <div id="file_to_unpload">'+file[0].name+'</b></div>');
+	myfile = file;*/
+	
+	let input = document.createElement('input');
+    input.type = 'file';
+    input.onchange = _this => {
+              let files =   Array.from(input.files);
+              myfile = files;
+			  $("#filename").html('<b>Upload: <div id="file_to_unpload">'+files[0].name+'</b></div>');
+          };
+    input.click();
+	
+})
+  
 });
 
 
